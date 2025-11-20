@@ -1,5 +1,0 @@
-package com.camdrilee.service;
-
-public class AppUserDetailsService implements UserDetailsService {
-
-}
