@@ -1,0 +1,36 @@
+package com.spring.automation;
+
+import java.util.List;
+
+import org.aspectj.apache.bcel.Repository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+@Service
+public class CarService {
+	@Autowired
+	private CarRepository carRepository;
+	public Car createCar(Car car) {
+		return carRepository.save(car);
+	}
+	public List<Car> getAllCar() {
+		return carRepository.findAll(); 
+	}
+	public ResponseEntity<Car> getCarById(Integer id) {
+		Car car = carRepository.findById(id).orElseThrow(()->new CarNotFoundException("Car with owner id " +id +"does not found"));
+		return ResponseEntity.ok(car);
+	}
+	public Car updateCar(Integer id, double depo) {
+		Car car1 = carRepository.findById(id).get();
+		car1.setDepo(depo);
+		Car updatedCar = carRepository.save(car1);
+		return updatedCar;
+	}
+	public void deleteCar(Car car) {
+		carRepository.delete(car);
+	}
+	public void deleteCarById(Integer id) {
+		carRepository.deleteById(id);
+	}
+}

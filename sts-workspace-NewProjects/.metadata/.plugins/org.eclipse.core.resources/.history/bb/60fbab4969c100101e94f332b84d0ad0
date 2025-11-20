@@ -1,0 +1,13 @@
+package com.camdrilee.repository;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.camdrilee.entity.CategoryEntity;
+import com.camdrilee.entity.ItemEntity;
+
+public interface ItemRepository extends JpaRepository<ItemEntity, Integer> {
+	Optional<ItemEntity>findByItemId(String itemId);
+	Integer countByCatEntity(CategoryEntity catEntity);
+}

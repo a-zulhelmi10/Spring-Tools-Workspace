@@ -1,0 +1,25 @@
+package com.camdrilee.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.camdrilee.repository.ItemRepository;
+
+@Service
+public class ItemService {
+	
+	@Autowired
+	private ItemRepository itemRepo;
+	
+	public void addItem() {
+
+	}
+
+	public void deleteItem() {
+
+	}
+
+	public void listItem() {
+
+	}
+}

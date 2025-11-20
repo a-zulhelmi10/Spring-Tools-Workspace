@@ -1,0 +1,26 @@
+package com.spring.club;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Table(name = "psgsquad25")
+public class PlayerDetails {
+	@Id
+	@Column(name = "id")
+	private Integer id;
+	@Column(name = "playerName")
+	private String name;
+	@Column(name = "position")
+	private String position;
+	@Column(name = "salary")
+	private double salary;
+}

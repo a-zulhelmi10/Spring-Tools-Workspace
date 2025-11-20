@@ -1,0 +1,5 @@
+package com.camdrilee.entity;
+
+public class ItemEntity {
+
+}

@@ -1,0 +1,16 @@
+package testRandom;
+
+public class Randm {
+	public String name;
+	public String club;
+	public int age;
+	
+	Randm(String name,String club,int age){
+		this.name=name;
+		this.club=club;
+		this.age=age;
+	}
+	public String toString() {
+		return name +" " +club +" " +age;
+	}
+}

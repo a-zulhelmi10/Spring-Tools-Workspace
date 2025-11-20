@@ -1,0 +1,8 @@
+package testRandom;
+
+public class Kuikui {
+	public static void main(String[] args) {
+		Randm ran = new Randm("Kane", "Bayern", 29);
+		System.out.println(ran);
+	}
+}

@@ -1,0 +1,12 @@
+package com.spring.automation;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class CarService {
+	public void createCar() {}
+	public void getAllCar() {}
+	public void getCarById() {}
+	public void updateCar() {}
+	public void deleteCar() {}
+}

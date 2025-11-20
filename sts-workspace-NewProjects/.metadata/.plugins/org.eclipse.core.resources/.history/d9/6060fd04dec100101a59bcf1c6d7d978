@@ -1,0 +1,7 @@
+package com.camdrilee.service;
+
+import org.springframework.stereotype.Service;
+
+public interface AppUserDetailsService extends UserDetailsService{
+
+}

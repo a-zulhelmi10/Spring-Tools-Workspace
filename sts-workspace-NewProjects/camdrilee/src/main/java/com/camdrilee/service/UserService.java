@@ -1,0 +1,60 @@
+package com.camdrilee.service;
+
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.camdrilee.entity.UserEntity;
+import com.camdrilee.io.UserRequest;
+import com.camdrilee.io.UserResponse;
+import com.camdrilee.repository.UserRepository;
+
+@Service
+public class UserService {
+	@Autowired
+	private UserRepository userRepo;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	public UserResponse addUser(UserRequest userReq){
+		UserEntity newUser = convertToEntity(userReq);
+		userRepo.save(newUser);
+		return convertToResponse(newUser);
+	}
+	
+	public void deleteUser(String userId) {
+		UserEntity existingUser = userRepo.findByUserId(userId).orElseThrow(()->
+				new RuntimeException("Username not found for userid: " +userId));
+		userRepo.delete(existingUser);
+	}
+	
+	public List<UserResponse> listUser() {
+		return userRepo.findAll().stream().map(userEntity -> convertToResponse(userEntity))
+		.collect(Collectors.toList());
+	}
+
+	private UserResponse convertToResponse(UserEntity newUser) {
+		return UserResponse.builder()
+			.userId(newUser.getUserId())
+			.username(newUser.getUsername())
+			.email(newUser.getEmail())
+			.role(newUser.getRole())
+			.createdAt(newUser.getCreatedAt())
+			.updatedAt(newUser.getUpdatedAt())
+			.build();
+	}
+
+	private UserEntity convertToEntity(UserRequest userReq) {
+		return UserEntity.builder()
+			.userId(UUID.randomUUID().toString())
+			.username(userReq.getUsername())
+			.email(userReq.getEmail())
+			.password(passwordEncoder.encode(userReq.getPassword()))
+			.role(userReq.getRole())
+			.build();
+	}
+}

@@ -1,0 +1,9 @@
+package com.camdrilee.io;
+
+//for admin to create user
+public class UserRequest {
+	private String username;
+	private String email;
+	private String password;
+	private String role;
+}

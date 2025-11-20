@@ -1,0 +1,7 @@
+package testRandom;
+
+public class randm {
+	public String name;
+	public String club;
+	public int age;
+}

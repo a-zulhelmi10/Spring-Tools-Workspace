@@ -1,0 +1,6 @@
+package com.camdrilee.io;
+
+public class AuthRequest {
+	private String email;
+	private String token;
+}

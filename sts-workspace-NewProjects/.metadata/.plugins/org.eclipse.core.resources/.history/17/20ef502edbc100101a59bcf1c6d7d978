@@ -1,0 +1,31 @@
+package com.camdrilee.service;
+
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.camdrilee.entity.UserEntity;
+import com.camdrilee.io.UserRequest;
+import com.camdrilee.repository.UserRepository;
+
+@Service
+public class UserService {
+	@Autowired
+	private UserRepository userRepo;
+	
+	public void addUser(UserRequest userReq){
+		convertToEntity(userReq);
+		userRepo.save(null);
+	}
+
+	private UserEntity convertToEntity(UserRequest userReq) {
+		return UserEntity.builder()
+			.userId(UUID.randomUUID().toString())
+			.username(userReq.getUsername())
+			.email(userReq.getEmail())
+			.password(userReq.getPassword())
+			.role(userReq.getRole())
+			.build();
+	}
+}
